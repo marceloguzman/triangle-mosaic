@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="codigo.js"></script>
+</head>
+
+
+	<body>
+
+	
+
+	<p>&nbsp;</p>
+<p>desface 1 
+  <input type="button" onclick="config('d1me')" name="d1menos" id="d1menos" value="&lt;" />
+  <input type="button" onclick="config('d1ma')" name="d1mas" id="d1mas" value="&gt;" />
+  <br />
+  desface 2
+  <input type="button" onclick="config('d2me')" name="d2menos" id="d2menos" value="&lt;" />
+  <input type="button" onclick="config('d2ma')" name="d2mas" id="d2mas" value="&gt;" />
+  <br />
+  tamaño  
+  <input type="button" onclick="config('tame')" name="tammenos" id="tammenos" value="&lt;" />
+  <input type="button" onclick="config('tama')" name="tammas" id="tammas" value="&gt;" />
+</p>
+
+	
+	
+	<input onclick="limpiar()" type="submit" name="button" id="button" value="limpiar" />
+	<input onclick="crear()" type="submit" name="button" id="button" value="hacer" />
+	<input onclick="recorte()" type="submit" name="button" id="button" value="recorte" />
+	<br><br>
+<div class="centrado">	
+
+
+	<img id="canvasImg" alt="Right click to save me!"/>
+
+<img id="canvasImg2" alt="el recorte"/>
+
+ <div class="inline-labels">
+    <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+    <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+    <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+    <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+    <label>W <input type="text" size="4" id="w" name="w" /></label>
+    <label>H <input type="text" size="4" id="h" name="h" /></label>
+    </div>
+
+
+    
+
+	<br><br>
+
+
+
+<canvas class="izq caja" id="te1" ></canvas>
+<canvas class="der caja" id="te2"></canvas>
+<canvas class="izq caja" id="photo" ></canvas>
+<canvas class="der caja" id="photo1"></canvas>
+
+<canvas class="izq caja" id="canvas01" ></canvas>
+
+
+
+</div>	
+
+
+	
+	<style>
+	
+.caja {
+//left: 70px;
+//display: none;
+//position: absolute;
+}
+	
+	.izq {
+	  //opacity: 0.7;
+  //background: wheat;
+  -webkit-transform: matrix(1, 0, 0.6, 1,  100, 0);
+      -o-transform: matrix(1, 0, 0.6, 1,  100, 0);
+  //       transform: matrix(1, 0,-0.45, 1,  100, 0);
+}
+
+
+.der {
+
+  //opacity: 0.5;
+ 
+ // background: blue;
+  -webkit-transform: matrix(1, 0, 0.6, 1,  100, 0);
+      -o-transform: matrix(1, 0, 0.6, 1,  100, 0);
+ //        transform: matrix(1, 0, 0.45, 1,  100, 0);
+}
+
+
+#canvasImg, #canvasImg2{
+background-color: #fff;
+border: 12px solid #2e2e2e;
+border-radius: 8px;
+//display: none;
+//max-width: 900px;
+}
+
+.centrado {
+text-align: center;
+position: realtive;
+}
+
+}
+	</style>
+	
+	
+	
+	
+
+	</body>
+
+
+</html>
