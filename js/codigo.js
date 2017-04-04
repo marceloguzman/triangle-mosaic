@@ -4,7 +4,7 @@ var pixelation = 40,
 	movida2 = -0,
 	cant_alfa = 0.7,
 	largo_extra= 600,
-	laimagen = "imagen2.jpg";
+	laimagen = "imagen.jpg";
 
 
 
