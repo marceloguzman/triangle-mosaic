@@ -1,25 +1,36 @@
-var pixelation = 40,
+var pixelation = 80,
 	angulo = 0.50,
 	movida1 = 0,
-	movida2 = -0,
+	movida2 = 0,
 	cant_alfa = 0.7,
-	largo_extra= 600,
+	largo_extra= 1200,
 	laimagen = "imagen.jpg";
 
-
+var timer;
 
 
 $(document).ready(function(){
-canvas = document.getElementById('photo');
-canvas1 = document.getElementById('photo1');
-context = canvas.getContext('2d');
-context1 = canvas1.getContext('2d');
+
+	canvas = document.getElementById('photo');
+	canvas1 = document.getElementById('photo1');
+	context = canvas.getContext('2d');
+	context1 = canvas1.getContext('2d');
 
    $("#imgInp").change(function(){
-        readURL(this);
+        readURL(this);  // read the path of the image for mosaic creation
+       
     });
 
-	
+
+
+  $(".js-options button").click(function(){
+  config($(this).data("option"));
+ });
+
+
+
+
+
 });
 
 
@@ -30,8 +41,12 @@ function crear() {
 	var img = new Image();
 	//alert ('creando');
 	//img.crossOrigin = "use-credentials";
-	img.src = laimagen;   //// aca quede
+	img.src = $('#originalImg').attr('src');   //// aca quede
 	mult = 2;
+
+
+ $("#loading").removeClass("hidden");
+
 	img.onload = function () {   //luego de que la imagen se cargo....
 		imgancho = (img.width * mult)+largo_extra;	// el ancho de la imagen grande mas el extra para la inclinacion
 		imgalto = img.height * mult;			// tengo el alto	
@@ -72,7 +87,7 @@ function crear() {
 		var ctx = t.getContext('2d');
 		var ctx1 = t1.getContext('2d');
 		
-		ctx.setTransform(1, 0, angulo, 1, -pixelation*13, 0); // esto hace que el skew de la imagen
+		ctx.setTransform(1, 0, angulo, 1, -pixelation, 0); // esto hace que el skew de la imagen
 		//ctx.setTransform(1, 0, angulo, 1, 0, 0); // esto hace que el skew de la imagen
 		
 		ctx1.setTransform(1, 0, angulo * -1, 1, 0, 0); // esto hace que el skew de la imagen
@@ -89,9 +104,9 @@ function crear() {
 
 copiar();
 
+$("#canvasImg").removeClass("hidden");
 
-
- 
+ $("#loading").addClass("hidden");
 
 
 
@@ -135,7 +150,7 @@ context1.drawImage(canvas1, 0, 0,imgancho*mult, imgalto*mult);
 	}
 }
 
-
+// -----------------------------------------------------------
 
 
 
@@ -250,6 +265,9 @@ var ctx3 = can3.getContext('2d');
 	  can3=null;
 	  ctx3=null;
 
+
+ $("#loading").addClass("hidden");
+
 }
 
 
@@ -259,29 +277,42 @@ var ctx3 = can3.getContext('2d');
 // ----------------------------------------------------------------------------------------------------------------
 
 function config(estado) {
+
+
+ $("#loading").removeClass("hidden");
+
+
+
 	if (estado == 'd1me') {
 		movida1 -= 10;
-		copiar();
+		clearTimeout(timer);
+		timer = setTimeout(function(){ copiar();}, 1000);
+		
 	}
 	if (estado == 'd1ma') {
 		movida1 += 10;
-		copiar();
+		clearTimeout(timer);
+		timer = setTimeout(function(){ copiar();}, 1000);
 	}
 	if (estado == 'd2me') {
 		movida2 -= 10;
-		copiar();
+		clearTimeout(timer);
+		timer = setTimeout(function(){ copiar();}, 1000);
 	}
 	if (estado == 'd2ma') {
 		movida2 += 10;
-		copiar();
+		clearTimeout(timer);
+		timer = setTimeout(function(){ copiar();}, 1000);
 	}
 	if (estado == 'tame') {
-		pixelation--;
-		limpiar();
+		pixelation-=5;
+		clearTimeout(timer);
+		timer = setTimeout(function(){ limpiar(); crear();}, 1000);
 	}
 	if (estado == 'tama') {
-		pixelation++;
-		limpiar();
+		pixelation+=5;
+		clearTimeout(timer);
+		timer = setTimeout(function(){ limpiar(); crear();}, 1000);
 	}
 	console.log("pixelation: " + pixelation);
 	console.log("m1: " + movida1);
@@ -349,18 +380,13 @@ function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
 		reader.onload = function (e) {
-			$('#canvasImg').attr('src', e.target.result);
+			$('#originalImg').attr('src', e.target.result);
+			 $("#originalImg").removeClass("hidden");
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
 }
  
  
- 
-function redimensione() { 
 
-$("canvasImg").width= "300px";
-$("canvasImg").height= "300px";
-
-}
  

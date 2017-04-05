@@ -6,35 +6,80 @@
 <script src="js/jquery.Jcrop.min.js"></script>
 <script type="text/javascript" src="js/codigo.js"></script>
 <link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css" />
-<link rel="stylesheet" href="css/styles.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
 <meta charset="utf-8">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+
           <a class="navbar-brand" href="#">Triangle Mosaic</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
     	<div class="row">
-    		<div class="col-md-12">
+    		<div class="col-md-4">
+
+
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Options</h3>
+  </div>
+  <div class="panel-body">
+  
+
+
+  
+<form id="form1">
+<input type='file' id="imgInp" />
+</form>
+
+  <img src="#" id="originalImg" class="hidden" />
+
+
+<div class="col-md-12">
+
+<span class="scroll-title">desface 1</span>
+<div class="btn-group js-options" role="group" aria-label="...">
+<button data-option="d1me" type="button" class="btn btn-default"> &lt;</button>
+<button data-option="d1ma" type="button" class="btn btn-default"> &gt;</button>
+</div>
+</div>
+
+<div class="col-md-12">
+<span class="scroll-title">desface 2</span>
+<div class="btn-group js-options" role="group" aria-label="...">
+<button data-option="d2me" type="button" class="btn btn-default"> &lt;</button>
+<button data-option="d2ma" type="button" class="btn btn-default"> &gt;</button>
+</div>
+</div>
+
+<div class="col-md-12">
+<span class="scroll-title">tamaño</span>
+<div class="btn-group js-options" role="group" aria-label="...">
+<button data-option="tame" type="button" class="btn btn-default"> &lt;</button>
+<button data-option="tama" type="button" class="btn btn-default"> &gt;</button>
+</div>
+</div>
+
+
+
+  </div>
+</div>
+</div>
+
 				
+    <div class="col-md-8">
+    <div class="panel panel-default">
 
-
-
+ <div class="panel-body">
 
 
 
@@ -45,38 +90,40 @@
 
 
 	
-<form id="form1" runat="server">
-<input type='file' id="imgInp" />
-</form>
 
-	
-	
 
-	<p>&nbsp;</p>
-<p>desface 1 
-  <input type="button" onclick="config('d1me')" name="d1menos" id="d1menos" value="&lt;" />
-  <input type="button" onclick="config('d1ma')" name="d1mas" id="d1mas" value="&gt;" />
-  <br />
-  desface 2
-  <input type="button" onclick="config('d2me')" name="d2menos" id="d2menos" value="&lt;" />
-  <input type="button" onclick="config('d2ma')" name="d2mas" id="d2mas" value="&gt;" />
-  <br />
-  tamaño  
-  <input type="button" onclick="config('tame')" name="tammenos" id="tammenos" value="&lt;" />
-  <input type="button" onclick="config('tama')" name="tammas" id="tammas" value="&gt;" />
-</p>
+  
 
+
+
+<div id="datos"></div>
 	
 	
 	<input onclick="limpiar()" type="submit" name="button" id="button" value="limpiar" />
 	<input onclick="crear()" type="submit" name="button" id="button" value="hacer" />
 	<input onclick="recorte()" type="submit" name="button" id="button" value="recorte" />
-	<input onclick="redimensione()" type="submit" name="button" id="button" value="redimensione" />
+
 	<br><br>
 <div class="centrado">	
 
 
-	<img id="canvasImg" alt="Right click to save me!"/>
+<div class="image-container">
+  <img id="canvasImg" class="" title="Right click to save me!" alt="Right click to save me!"/>
+  <img src="loader.gif" id="loading"  />
+</div>
+
+
+
+
+  <br><br>
+
+  <br><br>
+
+  <br><br>
+
+  <br><br>
+
+
 
 <img id="canvasImg2" alt="el recorte"/>
 
@@ -114,7 +161,7 @@
 			</div>
 		</div>
 	</div>
-
+  </div>
 
 </body>
 </html>
