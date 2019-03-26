@@ -1,0 +1,63 @@
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 95%;
+    padding: 0 40px;
+}
+
+.main,
+.main>div,
+.main .panel {
+    height: inherit;
+}
+
+#originalImg {
+    width: 100%;
+    padding: 10px;
+}
+
+.scroll-title {
+    clear: right;
+}
+
+nav {
+    background: url(images/bg.png);
+}
+
+.caja {
+    border: 1px solid #2e2e2e;
+    display: none;
+}
+
+.image-container {
+    width: 100%;
+    background-color: #bbb;
+    position: relative;
+}
+
+.image-container img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#canvasImg,
+#canvasImg2 {
+    background-color: #fff;
+    border: 12px solid #2e2e2e;
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+
+}
+
+.centrado {
+    text-align: center;
+    position: realtive;
+}
