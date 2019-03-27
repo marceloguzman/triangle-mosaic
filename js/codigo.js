@@ -2,8 +2,7 @@ var pixelation = 80,
     angulo = 0.50,
     movida1 = 0,
     movida2 = 0,
-    cant_alfa = 0.7,
-    laimagen = "imagen.jpg";
+    cant_alfa = 0.7;
 
 var timer;
 
@@ -17,7 +16,7 @@ $(document).ready(function() {
 
     $("#imgInp").change(function() {
         readURL(this); // read the path of the image for mosaic creation
-        console.log("reading file...");
+        //console.log("reading file...");
     });
 });
 
@@ -32,9 +31,9 @@ function crear() {
     img.onload = function() { // after the image is loaded ....
         imgancho = (img.width * mult); // the extra space is to give extra room while skewing
         imgalto = img.height * mult; // height set	
-        canvas.width = imgancho + 1800; // the extra space is to give extra room while skewing
+        canvas.width = imgancho *2; // the extra space is to give extra room while skewing
         canvas.height = imgalto;
-        canvas1.width = imgancho + 1800; // the extra space is to give extra room while skewing
+        canvas1.width = imgancho *2; // the extra space is to give extra room while skewing
         canvas1.height = imgalto;
         context.globalAlpha = cant_alfa;
         context1.globalAlpha = 1; // the background pixelated image needs to be with no pacity;
@@ -42,8 +41,8 @@ function crear() {
         context.drawImage(img, 0, 0, imgancho, imgalto);
         context1.drawImage(img, 0, 0, imgancho, imgalto);
 
-        context.drawImage(img, imgancho, 0, imgancho, imgalto); // agrego la imagen a la par
-        context1.drawImage(img, imgancho, 0, imgancho, imgalto); // agrego la imagen a la par
+        context.drawImage(img, imgancho, 0, imgancho, imgalto);
+        context1.drawImage(img, imgancho, 0, imgancho, imgalto); 
 
         pixelate(context, canvas.width, canvas.height, 0, 0);
         pixelate(context1, canvas1.width, canvas1.height, 0, 0);
@@ -51,16 +50,15 @@ function crear() {
 
         t = document.getElementById('te1');
         t1 = document.getElementById('te2');
-        t.width = imgancho + 500;
+        t.width = imgancho + (imgancho * 0.5);
         t.height = imgalto;
-        t1.width = imgancho + 500;
+        t1.width = imgancho + (imgancho * 0.5);
         t1.height = imgalto;
         var ctx = t.getContext('2d');
         var ctx1 = t1.getContext('2d');
 
-        ctx.setTransform(1, 0, angulo, 1, -pixelation, 0); // skew tje image
-        ctx1.setTransform(1, 0, angulo * -1, 1, 0, 0); // skew tje image
-
+        ctx.setTransform(1, 0, angulo, 1, -pixelation, 0); // skew the image
+        ctx1.setTransform(1, 0, angulo * -1, 1, 0, 0); // skew the image
 
         ctx1.drawImage(canvas1, 0, 0);
         ctx.drawImage(canvas, 0, 0);
@@ -68,7 +66,7 @@ function crear() {
         copiar();
 
         $("#canvasImg").removeClass("hidden");
-        $("#canvasinfo").text($("#canvasImg")[0].naturalWidth + " x " + $("#canvasImg")[0].naturalHeight + "pixels");
+       
     }
 }
 
@@ -94,10 +92,13 @@ function copiar() {
 
     var dataURL = can3.toDataURL(); // save canvas image as data url (png format by default)
     document.getElementById('canvasImg').src = dataURL; // set canvasImg image src to dataURL in order to be saved as an image
-    document.getElementById('canvasImg').width = can3.width / 2;
-    document.getElementById('canvasImg').height = can3.height / 2;
-    can3 = null;
+    document.getElementById('canvasImg').width = can3.width ;
+    document.getElementById('canvasImg').height = can3.height ;
+        $("#canvasinfo").html(can3.width + " x " + can3.height + " pixels.  <small> (Right-click the image to download it)</small>");
+
+ can3 = null;
     ctx3 = null;
+
 }
 
 
@@ -135,7 +136,7 @@ function pixelate(context, srcWidth, srcHeight, xPos, yPos) {
 
 function cleanCanvas() { // changing the canvas size reset its contents
     var w = canvas.width;
-    console.log("limpiar");
+    //console.log("cleaning canvas");
     canvas.width = 0;
     canvas.width = w;
     canvas1.width = 0;

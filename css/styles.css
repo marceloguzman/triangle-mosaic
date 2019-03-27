@@ -1,6 +1,7 @@
 html,
 body {
-  height: 100%; }
+  height: 100%;
+  background-color: #f0f0f0; }
 
 .container {
   width: 100%;
@@ -14,7 +15,7 @@ body {
 
 #originalImg {
   width: 100%;
-  padding: 10px; }
+  padding-bottom: 20px; }
 
 nav {
   background: url(images/bg.png); }
@@ -25,6 +26,11 @@ nav {
 
 .image-container {
   width: 100%; }
+
+.slidecontainer {
+  padding: 0 10px; }
+  .slidecontainer input {
+    height: 35px; }
 
 #canvasImg,
 #canvasImg2 {
@@ -43,6 +49,9 @@ nav {
 .hero-body h1 {
   text-shadow: 4px 4px 3px black; }
 
+#form1 {
+  padding-bottom: 20px; }
+
 .columns {
   padding-top: 40px; }
 
@@ -51,6 +60,20 @@ nav {
 
 .card {
   flex-basis: 100%; }
+
+.option {
+  display: flex; }
+  .option p {
+    width: 25%;
+    padding-top: 7px;
+    line-height: 16px; }
+
+#canvasinfo {
+  text-align: center; }
+  #canvasinfo small {
+    display: block;
+    color: #444;
+    font-size: 70%; }
 
 .hidden {
   display: none; }

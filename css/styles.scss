@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    background-color: #f0f0f0;
 }
 
 .container {
@@ -17,10 +18,8 @@ body {
 
 #originalImg {
     width: 100%;
-    padding: 10px;
+    padding-bottom: 20px;
 }
-
-
 
 nav {
     background: url(images/bg.png);
@@ -33,10 +32,15 @@ nav {
 
 .image-container {
     width: 100%;
-
 }
 
+.slidecontainer {
+    padding: 0 10px;
 
+    input {
+        height: 35px;
+    }
+}
 
 #canvasImg,
 #canvasImg2 {
@@ -51,8 +55,8 @@ nav {
 }
 
 .hero {
-  background: #fff url(../images/bg.png);
-  background-size: cover;
+    background: #fff url(../images/bg.png);
+    background-size: cover;
 }
 
 .hero-body {
@@ -61,8 +65,12 @@ nav {
     }
 }
 
+#form1 {
+    padding-bottom: 20px;
+}
+
 .columns {
-  padding-top: 40px;
+    padding-top: 40px;
 }
 
 .column {
@@ -73,6 +81,25 @@ nav {
     flex-basis: 100%;
 }
 
+.option {
+    display: flex;
+
+    p {
+        width: 25%;
+        padding-top: 7px;
+        line-height: 16px;
+    }
+}
+
+#canvasinfo {
+    text-align: center;
+
+    small {
+        display: block;
+        color: #444;
+        font-size: 70%;
+    }
+}
 
 .hidden {
     display: none;
