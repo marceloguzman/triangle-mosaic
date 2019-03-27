@@ -3,7 +3,6 @@ var pixelation = 80,
 	movida1 = 0,
 	movida2 = 0,
 	cant_alfa = 0.7,
-	largo_extra= 1200,
 	laimagen = "imagen.jpg";
 
 var timer;
@@ -18,14 +17,12 @@ $(document).ready(function(){
 
    $("#imgInp").change(function(){
         readURL(this);  // read the path of the image for mosaic creation
-       
+       	console.log ("reading file...");
     });
 
 
 
-  $(".js-options button").click(function(){
-  config($(this).data("option"));
- });
+
 
 
 
@@ -38,24 +35,23 @@ $(document).ready(function(){
 
 
 function crear() {
+
 	var img = new Image();
-	//alert ('creando');
-	//img.crossOrigin = "use-credentials";
-	img.src = $('#originalImg').attr('src');   //// aca quede
+
+	img.src = $('#originalImg').attr('src');   
 	mult = 2;
 
 
- $("#loading").removeClass("hidden");
 
-	img.onload = function () {   //luego de que la imagen se cargo....
-		imgancho = (img.width * mult)+largo_extra;	// el ancho de la imagen grande mas el extra para la inclinacion
-		imgalto = img.height * mult;			// tengo el alto	
-		canvas.width = imgancho+800;   // el adicional es para la segunda copia de la imagen para que no queden espacios en blanco
+	img.onload = function () {   // after the image is loaded ....
+		imgancho = (img.width * mult) ;	// the extra space is to give extra room while skewing
+		imgalto = img.height * mult ;	// height set	
+		canvas.width = imgancho+1800;   // the extra space is to give extra room while skewing
 		canvas.height = imgalto;
-		canvas1.width = imgancho+800; // el adicional es para la segunda copia de la imagen para que no queden espacios en blanco
+		canvas1.width = imgancho+1800;  // the extra space is to give extra room while skewing
 		canvas1.height = imgalto;
 		context.globalAlpha = cant_alfa;
-		context1.globalAlpha = cant_alfa;
+		context1.globalAlpha = 1; 		// the background pixelated image needs to be with no pacity;
 		
 		context.drawImage(img, 0, 0, imgancho, imgalto);
 		context1.drawImage(img, 0, 0, imgancho, imgalto);
@@ -63,53 +59,31 @@ function crear() {
 		context.drawImage(img, imgancho, 0, imgancho, imgalto);  // agrego la imagen a la par
 		context1.drawImage(img, imgancho, 0, imgancho, imgalto); // agrego la imagen a la par
 
-		
-
-		console.log(canvas.width);
-		
-		
-		
-		var imageData = canvas.toDataURL();
-		var imageData2 = context1.getImageData(0,0, canvas1.width, canvas1.height);
-		
-		
 		pixelate(context, canvas.width, canvas.height, 0, 0);
 		pixelate(context1, canvas1.width, canvas1.height, 0, 0);
-		
-		
+	
 		
 		t = document.getElementById('te1');
 		t1 = document.getElementById('te2');
-		t.width = imgancho+500;// total_ancho+largo_extra;
+		t.width = imgancho+500;
 		t.height = imgalto;
-		t1.width = imgancho+500;// total_ancho+largo_extra;
+		t1.width = imgancho+500;
 		t1.height = imgalto;
 		var ctx = t.getContext('2d');
 		var ctx1 = t1.getContext('2d');
 		
-		ctx.setTransform(1, 0, angulo, 1, -pixelation, 0); // esto hace que el skew de la imagen
-		//ctx.setTransform(1, 0, angulo, 1, 0, 0); // esto hace que el skew de la imagen
+		ctx.setTransform(1, 0, angulo, 1, -pixelation, 0); // skew tje image
+		ctx1.setTransform(1, 0, angulo * -1, 1, 0, 0); // skew tje image
 		
-		ctx1.setTransform(1, 0, angulo * -1, 1, 0, 0); // esto hace que el skew de la imagen
-		
-		//ctx1.drawImage(canvas1, imgancho, 0);
+	
 		ctx1.drawImage(canvas1, 0, 0);
 		ctx.drawImage(canvas, 0, 0);
 		
-		//ctx.drawImage(canvas, imgancho+1, 0);
-		//ctx.drawImage(canvas, -imgancho, 0);
-
-
 
 
 copiar();
 
 $("#canvasImg").removeClass("hidden");
-
- $("#loading").addClass("hidden");
-
-
-
 
 
 
@@ -159,51 +133,51 @@ context1.drawImage(canvas1, 0, 0,imgancho*mult, imgalto*mult);
 
 
 
- jQuery(function($){
+ // jQuery(function($){
 
-    var jcrop_api;
+ //    var jcrop_api;
 
-    $('#canvasImgg').Jcrop({
-      bgOpacity: 0.5,
-      bgColor: 'white',
-      addClass: 'jcrop-light',
-	  allowResize: true,
-	  allowMove: true,
-      onChange:   showCoords,
-      onSelect:   showCoords,
-      onRelease:  clearCoords
-    },function(){
-      jcrop_api = this;
-	  jcrop_api.animateTo([100,100,400,300]);
-	  jcrop_api.ui.selection.addClass('jcrop-selection');
-    });
+ //    $('#canvasImgg').Jcrop({
+ //      bgOpacity: 0.5,
+ //      bgColor: 'white',
+ //      addClass: 'jcrop-light',
+	//   allowResize: true,
+	//   allowMove: true,
+ //      onChange:   showCoords,
+ //      onSelect:   showCoords,
+ //      onRelease:  clearCoords
+ //    },function(){
+ //      jcrop_api = this;
+	//   jcrop_api.animateTo([100,100,400,300]);
+	//   jcrop_api.ui.selection.addClass('jcrop-selection');
+ //    });
 
-    $('#coords').on('change','input',function(e){
-      var x1 = $('#x1').val(),
-          x2 = $('#x2').val(),
-          y1 = $('#y1').val(),
-          y2 = $('#y2').val();
-      jcrop_api.setSelect([x1,y1,x2,y2]);
-    });
+ //    $('#coords').on('change','input',function(e){
+ //      var x1 = $('#x1').val(),
+ //          x2 = $('#x2').val(),
+ //          y1 = $('#y1').val(),
+ //          y2 = $('#y2').val();
+ //      jcrop_api.setSelect([x1,y1,x2,y2]);
+ //    });
 
-  });
+ //  });
 
-  // Simple event handler, called from onChange and onSelect
-  // event handlers, as per the Jcrop invocation above
-  function showCoords(c)
-  {
-    $('#x1').val(c.x);
-    $('#y1').val(c.y);
-    $('#x2').val(c.x2);
-    $('#y2').val(c.y2);
-    $('#w').val(c.w);
-    $('#h').val(c.h);
-  };
+ //  // Simple event handler, called from onChange and onSelect
+ //  // event handlers, as per the Jcrop invocation above
+ //  function showCoords(c)
+ //  {
+ //    $('#x1').val(c.x);
+ //    $('#y1').val(c.y);
+ //    $('#x2').val(c.x2);
+ //    $('#y2').val(c.y2);
+ //    $('#w').val(c.w);
+ //    $('#h').val(c.h);
+ //  };
 
-  function clearCoords()
-  {
-    $('#coords input').val('');
-  };
+ //  function clearCoords()
+ //  {
+ //    $('#coords input').val('');
+ //  };
 
 
 
@@ -266,80 +240,34 @@ var ctx3 = can3.getContext('2d');
 	  ctx3=null;
 
 
- $("#loading").addClass("hidden");
+
 
 }
-
-
 
 
 
 // ----------------------------------------------------------------------------------------------------------------
 
-function config(estado) {
+// function recorte() {
+// 	crop($('#x1').val(), $('#y1').val(), $('#w').val(), $('#h').val());
+// }
 
+// // ----------------------------------------------------------------------------------------------------------------
 
- $("#loading").removeClass("hidden");
-
-
-
-	if (estado == 'd1me') {
-		movida1 -= 10;
-		clearTimeout(timer);
-		timer = setTimeout(function(){ copiar();}, 1000);
-		
-	}
-	if (estado == 'd1ma') {
-		movida1 += 10;
-		clearTimeout(timer);
-		timer = setTimeout(function(){ copiar();}, 1000);
-	}
-	if (estado == 'd2me') {
-		movida2 -= 10;
-		clearTimeout(timer);
-		timer = setTimeout(function(){ copiar();}, 1000);
-	}
-	if (estado == 'd2ma') {
-		movida2 += 10;
-		clearTimeout(timer);
-		timer = setTimeout(function(){ copiar();}, 1000);
-	}
-	if (estado == 'tame') {
-		pixelation-=5;
-		clearTimeout(timer);
-		timer = setTimeout(function(){ limpiar(); crear();}, 1000);
-	}
-	if (estado == 'tama') {
-		pixelation+=5;
-		clearTimeout(timer);
-		timer = setTimeout(function(){ limpiar(); crear();}, 1000);
-	}
-	console.log("pixelation: " + pixelation);
-	console.log("m1: " + movida1);
-	console.log("m2: " + movida2);
-}
-
-// ----------------------------------------------------------------------------------------------------------------
-
-function recorte() {
-	crop($('#x1').val(), $('#y1').val(), $('#w').val(), $('#h').val());
-}
-
-// ----------------------------------------------------------------------------------------------------------------
-
-function crop(x, y, w, h) {
-	var canvas = document.getElementById("canvas01");
-	var ctx = canvas.getContext("2d");
-	var img = document.getElementById("canvasImg");
-	canvas.width = w * 2;
-	canvas.height = h * 2;
-	ctx.drawImage(img, x * 2, y * 2, w * 2, h * 2, 0, 0, w * 2, h * 2);
-	document.getElementById("canvasImg2").src = canvas.toDataURL();
-}
+// function crop(x, y, w, h) {
+// 	var canvas = document.getElementById("canvasImg");
+// 	var ctx = canvas.getContext("2d");
+// 	var img = document.getElementById("canvasImg");
+// 	canvas.width = w * 2;
+// 	canvas.height = h * 2;
+// 	ctx.drawImage(img, x * 2, y * 2, w * 2, h * 2, 0, 0, w * 2, h * 2);
+// 	document.getElementById("canvasImg2").src = canvas.toDataURL();
+// }
 
 // ----------------------------------------------------------------------------------------------------------------
 
 function pixelate(context, srcWidth, srcHeight, xPos, yPos) {
+
 	var sourceX = xPos,
 		sourceY = yPos;
 		imageData = context.getImageData(sourceX, sourceY, srcWidth, srcHeight);
@@ -362,12 +290,15 @@ function pixelate(context, srcWidth, srcHeight, xPos, yPos) {
 		}
 	}
 	context.putImageData(imageData, xPos, yPos); // overwrite original image
+
+
 }
 
 // ----------------------------------------------------------------------------------------------------------------
 
-function limpiar() { // cambiar la medida del canvas resetea el canvas
+function cleanCanvas() { // changing the canvas size reset its contents
 	var w = canvas.width;
+	console.log("limpiar");
 	canvas.width = 0;
 	canvas.width = w;
 	canvas1.width = 0;
@@ -387,6 +318,41 @@ function readURL(input) {
 	}
 }
  
+// ----------------------------------------------------------------------------------------------------------------
  
 
  
+
+
+ var slider1 = document.getElementById("myRange1");
+var output1 = document.getElementById("myRangeVal1");
+output1.innerHTML = slider1.value; // Display the default slider value
+
+// Update the current slider1 value (each time you drag the slider handle)
+slider1.oninput = function() {
+  output1.innerHTML = this.value;
+  movida1 = this.value;
+} 
+
+
+ var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("myRangeVal2");
+output2.innerHTML = slider2.value; // Display the default slider value
+
+// Update the current slider2 value (each time you drag the slider handle)
+slider2.oninput = function() {
+  output2.innerHTML = this.value;
+  movida2 = this.value;
+} 
+
+
+ var sliderSize = document.getElementById("myRangeSize");
+var outputSize = document.getElementById("myRangeValSize");
+outputSize.innerHTML = sliderSize.value; // Display the default slider value
+
+// Update the current sliderSize value (each time you drag the slider handle)
+sliderSize.oninput = function() {
+  outputSize.innerHTML = this.value;
+  pixelation = parseInt(this.value);
+}
+

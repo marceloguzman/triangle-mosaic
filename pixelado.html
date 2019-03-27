@@ -1,167 +1,105 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
-	<title>Triangle Mosaic</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery.Jcrop.min.js"></script>
-<script type="text/javascript" src="js/codigo.js"></script>
-<link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/styles.css" type="text/css" />
-<meta charset="utf-8">
+    <title>Triangle Mosaic</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.Jcrop.min.js"></script>
+    <link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    <meta charset="utf-8">
 </head>
+
 <body>
-	<nav class="navbar navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-
-          <a class="navbar-brand" href="#">Triangle Mosaic</a>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Triangle Mosaics
+                </h1>
+                <h2 class="subtitle">
+                    A triangle-mosaic generator using your uploaded picture
+                </h2>
+            </div>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
-    	<div class="row">
-    		<div class="col-md-4">
-
-
-        <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Options</h3>
-  </div>
-  <div class="panel-body">
-  
-
-
-  
-<form id="form1">
-<input type='file' id="imgInp" />
-</form>
-
-  <img src="#" id="originalImg" class="hidden" />
-
-
-<div class="col-md-12">
-
-<span class="scroll-title">desface 1</span>
-<div class="btn-group js-options" role="group" aria-label="...">
-<button data-option="d1me" type="button" class="btn btn-default"> &lt;</button>
-<button data-option="d1ma" type="button" class="btn btn-default"> &gt;</button>
-</div>
-</div>
-
-<div class="col-md-12">
-<span class="scroll-title">desface 2</span>
-<div class="btn-group js-options" role="group" aria-label="...">
-<button data-option="d2me" type="button" class="btn btn-default"> &lt;</button>
-<button data-option="d2ma" type="button" class="btn btn-default"> &gt;</button>
-</div>
-</div>
-
-<div class="col-md-12">
-<span class="scroll-title">tamaño</span>
-<div class="btn-group js-options" role="group" aria-label="...">
-<button data-option="tame" type="button" class="btn btn-default"> &lt;</button>
-<button data-option="tama" type="button" class="btn btn-default"> &gt;</button>
-</div>
-</div>
-
-
-
-  </div>
-</div>
-</div>
-
-				
-    <div class="col-md-8">
-    <div class="panel panel-default">
-
- <div class="panel-body">
-
-
-
-<!-- ****************************************************************  -->
-
-
-
-
-
-	
-
-
-  
-
-
-
-<div id="datos"></div>
-	
-	
-	<input onclick="limpiar()" type="submit" name="button" id="button" value="limpiar" />
-	<input onclick="crear()" type="submit" name="button" id="button" value="hacer" />
-	<input onclick="recorte()" type="submit" name="button" id="button" value="recorte" />
-
-	<br><br>
-<div class="centrado">	
-
-
-<div class="image-container">
-  <img id="canvasImg" class="" title="Right click to save me!" alt="Right click to save me!"/>
-  <img src="loader.gif" id="loading"  />
-</div>
-
-
-
-
-  <br><br>
-
-  <br><br>
-
-  <br><br>
-
-  <br><br>
-
-
-
-<img id="canvasImg2" alt="el recorte"/>
-
- <div class="inline-labels">
-    <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
-    <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
-    <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
-    <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
-    <label>W <input type="text" size="4" id="w" name="w" /></label>
-    <label>H <input type="text" size="4" id="h" name="h" /></label>
+    </section>
+    <div class="container is-fluid">
+        <div class="columns">
+            <div class="column is-one-third ">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title"> Image </p>
+                    </div>
+                    <div class="card-content">
+                        <form id="form1">
+                            <input type='file' id="imgInp" />
+                        </form>
+                        <img src="#" id="originalImg" class="hidden" />
+                        <div class="col-md-12">
+                            <div>skew 1</div>
+                            <div class="slidecontainer">
+                                <input type="range" min="-1000" max="1000" value="0" step="50" class="slider" id="myRange1">
+                            </div>
+                            <div id="myRangeVal1"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div>skew 2</div>
+                            <div class="slidecontainer">
+                                <input type="range" min="-1000" max="1000" value="0" step="50" class="slider" id="myRange2">
+                            </div>
+                            <div id="myRangeVal2"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div>triangle size</div>
+                            <div class="slidecontainer">
+                                <input type="range" min="50" max="300" value="150" step="10" class="slider" id="myRangeSize">
+                            </div>
+                            <div id="myRangeValSize"></div>
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" onclick="crear()" class="card-footer-item">Create</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column">
+                <h3 class="panel-title">Mosaic Result</h3>
+                <div class="panel-body">
+                    <!-- ****************************************************************  -->
+                    <input onclick="crear()" type="submit" name="button" id="button" value="hacer" />
+                    <input onclick="recorte()" type="submit" name="button" id="button" value="recorte" />
+                    <br><br>
+                    <div class="centrado">
+                        <div class="image-container">
+                            <img id="canvasImg" class="" title="Right click to save me!" alt="Right click to save me!" />
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <img id="canvasImg2" alt="el recorte" />
+                        <div class="inline-labels">
+                            <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+                            <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+                            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+                            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+                            <label>W <input type="text" size="4" id="w" name="w" /></label>
+                            <label>H <input type="text" size="4" id="h" name="h" /></label>
+                        </div>
+                        <br><br>
+                        <canvas class="izq caja" id="te1"></canvas>
+                        <canvas class="der caja" id="te2"></canvas>
+                        <canvas class="izq caja" id="photo"></canvas>
+                        <canvas class="der caja" id="photo1"></canvas>
+                        <canvas class="izq caja" id="canvas01"></canvas>
+                    </div>
+                    <!-- ****************************************************************  -->
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    
-
-	<br><br>
-
-
-
-<canvas class="izq caja" id="te1" ></canvas>
-<canvas class="der caja" id="te2"></canvas>
-<canvas class="izq caja" id="photo" ></canvas>
-<canvas class="der caja" id="photo1"></canvas>
-
-<canvas class="izq caja" id="canvas01" ></canvas>
-
-
-
-</div>	
-
-
-<!-- ****************************************************************  -->
-
-
-			</div>
-		</div>
-	</div>
-  </div>
-
 </body>
+<script type="text/javascript" src="js/codigo.js"></script>
+
 </html>
