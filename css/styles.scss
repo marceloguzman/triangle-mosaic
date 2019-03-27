@@ -61,3 +61,18 @@ nav {
     text-align: center;
     position: realtive;
 }
+
+.hero {
+  background: #fff url(../images/bg.png);
+  background-size: cover;
+}
+
+.hero-body {
+    h1 {
+        text-shadow: 4px 4px 3px black;
+    }
+}
+
+.columns {
+  padding-top: 40px;
+}
