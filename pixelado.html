@@ -64,37 +64,21 @@
                 </div>
             </div>
             <div class="column">
-                <h3 class="panel-title">Mosaic Result</h3>
-                <div class="panel-body">
-                    <!-- ****************************************************************  -->
-                    <input onclick="crear()" type="submit" name="button" id="button" value="hacer" />
-                    <input onclick="recorte()" type="submit" name="button" id="button" value="recorte" />
-                    <br><br>
-                    <div class="centrado">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title"> Mosaic Result </p>
+                    </div>
+                    <div class="card-content">
                         <div class="image-container">
-                            <img id="canvasImg" class="" title="Right click to save me!" alt="Right click to save me!" />
+                            <img id="canvasImg" class="hidden"  title="Right click to save me!" alt="Right click to save me!" />
+                            <p id="canvasinfo"></p>
                         </div>
-                        <br><br>
-                        <br><br>
-                        <br><br>
-                        <br><br>
-                        <img id="canvasImg2" alt="el recorte" />
-                        <div class="inline-labels">
-                            <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
-                            <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
-                            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
-                            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
-                            <label>W <input type="text" size="4" id="w" name="w" /></label>
-                            <label>H <input type="text" size="4" id="h" name="h" /></label>
-                        </div>
-                        <br><br>
                         <canvas class="izq caja" id="te1"></canvas>
                         <canvas class="der caja" id="te2"></canvas>
                         <canvas class="izq caja" id="photo"></canvas>
                         <canvas class="der caja" id="photo1"></canvas>
                         <canvas class="izq caja" id="canvas01"></canvas>
                     </div>
-                    <!-- ****************************************************************  -->
                 </div>
             </div>
         </div>

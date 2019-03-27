@@ -4,7 +4,7 @@ body {
 
 .container {
   width: 100%;
-  height: 95%;
+  min-height: 60%;
   padding: 0 40px; }
 
 .main,
@@ -16,9 +16,6 @@ body {
   width: 100%;
   padding: 10px; }
 
-.scroll-title {
-  clear: right; }
-
 nav {
   background: url(images/bg.png); }
 
@@ -27,22 +24,11 @@ nav {
   display: none; }
 
 .image-container {
-  width: 100%;
-  background-color: #bbb;
-  position: relative; }
-
-.image-container img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0; }
+  width: 100%; }
 
 #canvasImg,
 #canvasImg2 {
   background-color: #fff;
-  border: 12px solid #2e2e2e;
-  border-radius: 8px;
   max-width: 100%;
   height: auto; }
 
@@ -59,5 +45,14 @@ nav {
 
 .columns {
   padding-top: 40px; }
+
+.column {
+  display: flex; }
+
+.card {
+  flex-basis: 100%; }
+
+.hidden {
+  display: none; }
 
 /*# sourceMappingURL=styles.css.map */
